@@ -5,7 +5,9 @@ LABEL org.opencontainers.image.authors="ALTAF HUSEN"
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /requirements.txt
-
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install postgresql-client -y
+RUN apt-get autoclean && apt-get autoremove 
 RUN pip install -r /requirements.txt
 
 RUN mkdir /app
